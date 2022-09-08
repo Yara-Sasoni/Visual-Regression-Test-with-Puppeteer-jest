@@ -1,0 +1,10 @@
+{
+    "semi": false,
+    "singleQoute": true,
+    "useTabs": true,
+    "tabWidth": 2,
+    "bracketSpacing": true,
+    "trailingcomma": "es5"
+     
+    
+}
