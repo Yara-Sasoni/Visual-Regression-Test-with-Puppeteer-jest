@@ -20,7 +20,7 @@ describe('Visual Regression Testing', () => {
         const image = await page.screenshot()  //create a variable
         expect(image).toMatchImageSnapshot({  //you take that image and compare it with the original one
             failureThresholdType: "pixel",
-            failureThreshold: 500,
+            failureThreshold: 2000,
         })
     })
     test('Single Element Snapshot', async function() {
@@ -53,4 +53,12 @@ describe('Visual Regression Testing', () => {
             failureThreshold: 0.01,
         })
     })
+    test('Remove Element Before Snapshot', async function() {
+        await page.goto('https://www.example.com')
+        await page.evaluate(() => {
+            ;(document.querySelectorAll('h1') || []).forEach(el => el.remove())
+        })
+        jest.setTimeout(10000)
+    })
+
 })
