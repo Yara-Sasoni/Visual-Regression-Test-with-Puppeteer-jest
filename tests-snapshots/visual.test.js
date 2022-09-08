@@ -32,4 +32,25 @@ describe('Visual Regression Testing', () => {
             failureThreshold: 0.01,
         })
     })
+    test('Mobile Snapshot', async function() {
+        await page.goto('https:www.example.com')
+        await page.waitForSelector('h1')
+        await page.emulate(puppeteer.devices['Galaxy S5'])
+        const image = await page.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01,
+        })
+    })
+    test('Tablet Snapshot', async function() {
+        await page.goto('https:www.example.com')
+        await page.waitForSelector('h1')
+        const tablet = puppeteer.devices['iPad landscape'] //this will set the the viewport of puppeteer to match the tablet screen resolution 
+        await page.emulate(tablet)
+        const image = await page.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01,
+        })
+    })
 })
